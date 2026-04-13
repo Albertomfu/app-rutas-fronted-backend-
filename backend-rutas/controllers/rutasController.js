@@ -4,12 +4,19 @@ exports.getRutas = async (req, res) => {
   const rutas = await Ruta.find();
   res.json(rutas);
 };
-
 exports.crearRuta = async (req, res) => {
-  const ruta = new Ruta(req.body);
-  await ruta.save();
+  try {
+    console.log(req.body); // 👈 DEBUG IMPORTANTE
 
-  res.json(ruta);
+    const nuevaRuta = new Ruta(req.body); // 🔥 GUARDA TODO
+
+    await nuevaRuta.save();
+
+    res.json(nuevaRuta);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: "Error creando ruta" });
+  }
 };
 
 exports.editarRuta = async (req, res) => {

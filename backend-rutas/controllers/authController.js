@@ -12,15 +12,20 @@ exports.register = async (req, res) => {
 
     const hash = await bcrypt.hash(password, 10);
 
-    const nuevoUsuario = new Usuario({
+    const user = new Usuario({
       nombre,
       email,
       password: hash,
     });
 
-    await nuevoUsuario.save();
+    await user.save();
 
-    res.json({ msg: "Usuario creado correctamente" });
+    // 🔥 GENERAR TOKEN (CLAVE)
+    const token = jwt.sign({ id: user._id, role: user.role }, "secreto", {
+      expiresIn: "1d",
+    });
+
+    res.json({ token, user }); // 👈 IMPORTANTE
   } catch (error) {
     res.status(500).json(error);
   }

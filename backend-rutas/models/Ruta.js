@@ -1,17 +1,36 @@
+// const mongoose = require("mongoose");
+
+// const RutaSchema = new mongoose.Schema({
+//   nombre: String,
+//   salida: String,
+//   llegada: String,
+//   km: Number,
+//   duracion: String,
+//   dificultad: String,
+//   tipo: String,
+//   imagen: String,
+//   maps: String,
+//   wikiloc: String,
+// });
+
+// module.exports = mongoose.model("Ruta", RutaSchema);
+
 const mongoose = require("mongoose");
 
 const RutaSchema = new mongoose.Schema({
   nombre: String,
   zona: String,
-  dificultad: String,
-  distancia: Number,
-  duracion: String,
   descripcion: String,
+
+  salida: String,
+  llegada: String,
+  km: Number,
+  duracion: String,
+  dificultad: String,
+  tipo: String,
   imagen: String,
-  coordenadas: {
-    lat: Number,
-    lng: Number,
-  },
+  maps: String,
+  wikiloc: String,
 });
 
 module.exports = mongoose.model("Ruta", RutaSchema);
