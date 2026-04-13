@@ -1,0 +1,65 @@
+<section class="rutas-page">
+  <header class="rutas-header">
+    <h1>Jerez de los Caballeros · Extremadura</h1>
+    <p>
+      Jerez de los Caballeros es una de las localidades más monumentales del sur
+      de Extremadura, conocida por su impresionante legado templario, su alcázar
+      medieval y sus murallas. Situada en la comarca de la Sierra Suroeste, su
+      entorno natural combina dehesas, riberas fluviales y suaves sierras,
+      ofreciendo rutas de senderismo que unen historia, patrimonio y naturaleza.
+      Es un destino ideal para disfrutar del turismo cultural y rural durante
+      todo el año.
+    </p>
+  </header>
+
+  <!-- Mapa general -->
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps?q=Jerez+de+los+Caballeros+Badajoz&output=embed"
+      loading="lazy"
+    >
+    </iframe>
+  </div>
+
+  <!-- Rutas -->
+  <section class="rutas">
+    @for (ruta of rutas; track ruta.nombre) {
+    <article class="ruta-card">
+      <img [src]="ruta.imagen" [alt]="ruta.nombre" />
+
+      <div class="ruta-info">
+        <h3>{{ ruta.nombre }}</h3>
+
+        <ul>
+          <li><strong>Salida:</strong> {{ ruta.salida }}</li>
+          <li><strong>Llegada:</strong> {{ ruta.llegada }}</li>
+          <li><strong>Distancia:</strong> {{ ruta.km }} km</li>
+          <li><strong>Duración:</strong> {{ ruta.duracion }}</li>
+          <li><strong>Dificultad:</strong> {{ ruta.dificultad }}</li>
+          <li><strong>Tipo:</strong> {{ ruta.tipo }}</li>
+        </ul>
+
+        <div class="ruta-links">
+          <a
+            class="maps"
+            [attr.href]="ruta.maps"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google Maps
+          </a>
+
+          <a
+            class="wikiloc"
+            [attr.href]="ruta.wikiloc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Wikiloc
+          </a>
+        </div>
+      </div>
+    </article>
+    }
+  </section>
+</section>

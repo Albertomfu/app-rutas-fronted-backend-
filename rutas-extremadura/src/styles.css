@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+/* Fondo general de la página */
+body {
+  background-color: #edf7ed; /* verde muy claro, suave */
+  margin: 0;
+  font-family: "Arial", sans-serif;
+}
+
+/* Layout principal */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr; /* solo main por ahora */
+  min-height: calc(100vh - 160px);
+  margin: 2rem; /* margen alrededor */
+  gap: 1rem;
+}
+
+/* Main / contenido */
+.content {
+  padding: 2rem;
+  background-color: #f9fbe7; /* verde muy claro, combina con sidebar */
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .layout {
+    margin: 1rem;
+  }
+}

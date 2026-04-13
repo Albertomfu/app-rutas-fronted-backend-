@@ -1,0 +1,141 @@
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-las-hurdes',
+  imports: [],
+  templateUrl: './las-hurdes.component.html',
+  styleUrl: './las-hurdes.component.css',
+})
+export class LasHurdesComponent {
+  rutas = [
+    {
+      nombre: 'Meandro del Melero',
+      salida: 'Riolobos de Hurdes',
+      llegada: 'Mirador del Melero',
+      km: 4,
+      dificultad: 'Fácil',
+      duracion: '1 h',
+      tipo: 'circular',
+      imagen: 'images/hurdes/meandro-melero.jpg',
+      maps: 'https://www.google.com/maps/search/Meandro+del+Melero',
+      wikiloc:
+        'https://es.wikiloc.com/rutas-senderismo/meandro-melero-circular-122766319',
+    },
+    {
+      nombre: 'Valle del Río Malvellido',
+      salida: 'Caminomorisco',
+      llegada: 'Pozas naturales',
+      km: 9,
+      dificultad: 'Fácil',
+      duracion: '2 h',
+      tipo: 'Circular',
+      imagen: 'images/hurdes/rio-malvellido.webp',
+      maps: 'https://www.google.com/maps/search/Rio+Malvellido',
+      wikiloc:
+        'https://es.wikiloc.com/rutas-senderismo/valle-del-rio-malvellido-senda-de-martilandran-el-gasco-chorro-de-la-meancera-y-volcan-de-el-gasco-99154650',
+    },
+    {
+      nombre: 'Chorro de la Meancera',
+      salida: 'El Gasco',
+      llegada: 'Cascada de la Meancera',
+      km: 2,
+      dificultad: 'Media',
+      duracion: '1 h',
+      tipo: 'Circular',
+      imagen: 'images/hurdes/chorro-meancera.jpg',
+      maps: 'https://www.google.com/maps/search/Chorro+de+la+Meancera',
+      wikiloc:
+        'https://es.wikiloc.com/rutas-senderismo/chorro-de-la-meancera-13849974',
+    },
+    {
+      nombre: 'Ruta de las Alquerías',
+      salida: 'Casares de las Hurdes',
+      llegada: 'Alquerías tradicionales',
+      km: 18,
+      dificultad: 'Media',
+      duracion: '4 h',
+      tipo: 'Solo ida',
+      imagen: 'images/hurdes/alquerias.jpg',
+      maps: 'https://www.google.com/maps/search/Casares+de+las+Hurdes',
+      wikiloc:
+        'https://es.wikiloc.com/rutas-senderismo/ruta-de-las-alquerias-22315361',
+    },
+    {
+      nombre: 'Sendero del Río Ladrillar',
+      salida: 'Las Mestas',
+      llegada: 'Río Ladrillar',
+      km: 6,
+      dificultad: 'Fácil',
+      duracion: '2 h',
+      tipo: 'Lineal',
+      imagen: 'images/hurdes/ladrillar.jpg',
+      maps: 'https://www.google.com/maps/search/Rio+Ladrillar',
+      wikiloc:
+        'https://www.wikiloc.com/hiking-trails/castillo-de-reina-desde-reina-5080676',
+    },
+    {
+      nombre: 'Ruta de los Miradores Hurdano',
+      salida: 'Pinofranqueado',
+      llegada: 'Miradores del valle',
+      km: 19.3,
+      dificultad: 'Media',
+      duracion: '5 h',
+      tipo: 'Circular',
+      imagen: 'images/hurdes/miradores-hurdanos.jpg',
+      maps: 'https://www.google.com/maps/search/Pinofranqueado',
+      wikiloc: 'https://es.wikiloc.com/rutas-senderismo/ladrillar-1806771',
+    },
+    {
+      nombre: 'Ruta del Volcán del Gasco',
+      salida: 'El Gasco',
+      llegada: 'Cráter volcánico',
+      km: 5.5,
+      dificultad: 'Media',
+      duracion: '2 h',
+      tipo: 'Circular',
+      imagen: 'images/hurdes/volcan-del-gasco.jpg',
+      maps: 'https://www.google.com/maps/search/Volcan+del+Gasco',
+      wikiloc:
+        'https://es.wikiloc.com/rutas-senderismo/2020-10-27-extremadura-las-hurdes-el-gasco-a-chorro-meancero-y-volcan-circular-61108171',
+    },
+    {
+      nombre: 'Cascada del Chorrituelo',
+      salida: 'Ovejuela',
+      llegada: 'Cascada de Ovejuela',
+      km: 6,
+      dificultad: 'Media',
+      duracion: '2,5 h',
+      tipo: 'Circular',
+      imagen: 'images/hurdes/ruta-chorrituelo.jpg',
+      maps: 'https://www.google.com/maps/search/Cascada+de+Ovejuela',
+      wikiloc:
+        'https://es.wikiloc.com/rutas-a-pie/ovejuela-cascada-del-chorrituelo-ovejuela-las-hurdes-6235305',
+    },
+    {
+      nombre: 'Ruta del Río Esperabán',
+      salida: 'Vegas de Coria',
+      llegada: 'Charcos naturales',
+      km: 25,
+      dificultad: 'Moderado',
+      duracion: '6 h',
+      tipo: 'Circular',
+      imagen: 'images/hurdes/ruta-rio-esperaban.jpg',
+      maps: 'https://www.google.com/maps/search/Rio+Esperaban',
+      wikiloc:
+        'https://es.wikiloc.com/rutas-senderismo/valle-del-esperaban-4002887',
+    },
+    {
+      nombre: 'Ruta de los Canchos de Ramiro',
+      salida: 'Caminomorisco',
+      llegada: 'Zona ZEPA',
+      km: 10,
+      dificultad: 'Fácil',
+      duracion: '3 h',
+      tipo: 'Circular',
+      imagen: 'images/hurdes/Canchos_de_Ramiro.jpg',
+      maps: 'https://www.google.com/maps/search/Canchos+de+Ramiro',
+      wikiloc:
+        'https://es.wikiloc.com/rutas-senderismo/ruta-los-canchos-de-ramiro-152301863',
+    },
+  ];
+}

@@ -1,0 +1,64 @@
+<section class="rutas-page">
+  <header class="rutas-header">
+    <h1>Campo Arañuelo · Extremadura</h1>
+    <p>
+      Campo Arañuelo es una comarca situada al noreste de la provincia de
+      Cáceres, conocida por sus dehesas, ríos y pueblos históricos. Sus rutas de
+      senderismo combinan patrimonio cultural, gargantas, embalses y miradores
+      panorámicos, ofreciendo paseos accesibles y variados ideales para
+      disfrutar de la naturaleza, la historia y el turismo rural durante todo el
+      año.
+    </p>
+  </header>
+
+  <!-- Mapa general -->
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps?q=Campo%20Arañuelo%2C%20Cáceres%2C%20Extremadura&output=embed"
+      loading="lazy"
+    >
+    </iframe>
+  </div>
+
+  <!-- Rutas -->
+  <section class="rutas">
+    @for (ruta of rutas; track ruta.nombre) {
+    <article class="ruta-card">
+      <img [src]="ruta.imagen" [alt]="ruta.nombre" />
+
+      <div class="ruta-info">
+        <h3>{{ ruta.nombre }}</h3>
+
+        <ul>
+          <li><strong>Salida:</strong> {{ ruta.salida }}</li>
+          <li><strong>Llegada:</strong> {{ ruta.llegada }}</li>
+          <li><strong>Distancia:</strong> {{ ruta.km }} km</li>
+          <li><strong>Duración:</strong> {{ ruta.duracion }}</li>
+          <li><strong>Dificultad:</strong> {{ ruta.dificultad }}</li>
+          <li><strong>Tipo:</strong> {{ ruta.tipo }}</li>
+        </ul>
+
+        <div class="ruta-links">
+          <a
+            class="maps"
+            [attr.href]="ruta.maps"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google Maps
+          </a>
+
+          <a
+            class="wikiloc"
+            [attr.href]="ruta.wikiloc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Wikiloc
+          </a>
+        </div>
+      </div>
+    </article>
+    }
+  </section>
+</section>

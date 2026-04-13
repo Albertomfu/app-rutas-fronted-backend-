@@ -1,0 +1,64 @@
+<section class="rutas-page">
+  <header class="rutas-header">
+    <h1>Alcántara · Extremadura</h1>
+    <p>
+      Alcántara es una localidad histórica famosa por su impresionante Puente
+      Romano sobre el río Tajo y su entorno natural protegido. Sus rutas de
+      senderismo recorren el casco histórico, embalses, sierras y miradores
+      panorámicos, ofreciendo una experiencia única para quienes buscan combinar
+      patrimonio histórico, paisajes fluviales y turismo rural en plena
+      naturaleza.
+    </p>
+  </header>
+
+  <!-- Mapa general -->
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps?q=Alcantara+Caceres&output=embed"
+      loading="lazy"
+    >
+    </iframe>
+  </div>
+
+  <!-- Rutas -->
+  <section class="rutas">
+    @for (ruta of rutas; track ruta.nombre) {
+    <article class="ruta-card">
+      <img [src]="ruta.imagen" [alt]="ruta.nombre" />
+
+      <div class="ruta-info">
+        <h3>{{ ruta.nombre }}</h3>
+
+        <ul>
+          <li><strong>Salida:</strong> {{ ruta.salida }}</li>
+          <li><strong>Llegada:</strong> {{ ruta.llegada }}</li>
+          <li><strong>Distancia:</strong> {{ ruta.km }} km</li>
+          <li><strong>Duración:</strong> {{ ruta.duracion }}</li>
+          <li><strong>Dificultad:</strong> {{ ruta.dificultad }}</li>
+          <li><strong>Tipo:</strong> {{ ruta.tipo }}</li>
+        </ul>
+
+        <div class="ruta-links">
+          <a
+            class="maps"
+            [attr.href]="ruta.maps"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Google Maps
+          </a>
+
+          <a
+            class="wikiloc"
+            [attr.href]="ruta.wikiloc"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Wikiloc
+          </a>
+        </div>
+      </div>
+    </article>
+    }
+  </section>
+</section>

@@ -1,0 +1,234 @@
+/* CONTENEDOR PRINCIPAL */
+
+.zona-view {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.8s ease;
+  overflow: hidden;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-title {
+  background: rgba(6, 90, 9, 0.473);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+}
+
+.hero-title h1 {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 900;
+
+  background: linear-gradient(90deg, #007a33, #ffffff, #111111);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  letter-spacing: 2px;
+}
+
+.hero-title p {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+  color: #f5f5f5;
+}
+
+/* PARTÍCULAS AMBIENTE */
+
+.particles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.particles::before,
+.particles::after {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.25) 1px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+  animation: moveParticles 60s linear infinite;
+}
+
+.particles::after {
+  animation-duration: 90s;
+  opacity: 0.4;
+}
+
+/* PLACEHOLDER */
+
+.placeholder {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 3rem;
+}
+
+/* TARJETA */
+
+.placeholder-card {
+  max-width: 700px;
+  text-align: center;
+  padding: 3.5rem 3rem;
+  border-radius: 28px;
+  position: relative;
+  overflow: hidden;
+
+  backdrop-filter: blur(16px);
+
+  background: linear-gradient(
+    135deg,
+    rgba(0, 122, 51, 0.35) 0%,
+    rgba(0, 122, 51, 0.15) 25%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.35),
+    inset 0 0 30px rgba(255, 255, 255, 0.25);
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.placeholder-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.4);
+}
+
+.placeholder-card:hover::after {
+  opacity: 1;
+  animation: shine 1.6s ease;
+}
+
+.placeholder-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.35),
+    transparent 70%
+  );
+
+  transform: rotate(25deg);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+/* BRÚJULA */
+
+.compass {
+  font-size: 3.5rem;
+
+  margin-bottom: 1rem;
+
+  animation: rotateCompass 6s linear infinite;
+}
+
+/* TITULO */
+
+.placeholder-card h2 {
+  font-size: 3rem;
+
+  font-weight: 900;
+
+  margin-bottom: 0.8rem;
+
+  background: linear-gradient(90deg, #1b5e20, #009688);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* TEXTO */
+
+.placeholder-card p {
+  font-size: 1.05rem;
+
+  line-height: 1.6;
+
+  color: #333;
+
+  margin-bottom: 1rem;
+}
+
+/* PISTA */
+
+.hint {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* ANIMACIONES */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateCompass {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveParticles {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-1000px);
+  }
+}
+@keyframes shine {
+  from {
+    transform: translateX(-100%) rotate(25deg);
+  }
+  to {
+    transform: translateX(100%) rotate(25deg);
+  }
+}
+@keyframes fadeHero {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

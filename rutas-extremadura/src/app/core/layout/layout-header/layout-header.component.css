@@ -1,0 +1,149 @@
+/* HEADER GENERAL */
+
+.header {
+  background: linear-gradient(135deg, #1b5e20, #558b2f);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* CONTENEDOR */
+
+.header-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0.8rem 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO */
+
+.logo h1 {
+  font-size: 1.6rem;
+  margin: 0;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* MENÚ CENTRAL */
+
+.nav-center {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-center a {
+  text-decoration: none;
+  color: #e8f5e9;
+  font-weight: 600;
+  position: relative;
+}
+
+/* ANIMACIÓN */
+
+.nav-center a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #c8e6c9;
+  transition: 0.3s;
+}
+
+.nav-center a:hover::after,
+.nav-center a.active::after {
+  width: 100%;
+}
+
+/* LOGIN DERECHA */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+/* BOTÓN LOGIN */
+
+.login {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.85;
+  transition: 0.2s;
+}
+
+.login:hover {
+  opacity: 1;
+}
+
+/* BOTÓN REGISTRO */
+
+.register {
+  background: #c8e6c9;
+  color: #1b5e20;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.register:hover {
+  background: #e8f5e9;
+  transform: translateY(-1px);
+}
+
+/* USUARIO */
+
+.user {
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* ADMIN */
+
+.admin {
+  color: #fff59d;
+  text-decoration: none;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.admin:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* LOGOUT */
+
+.logout {
+  color: #ffcdd2;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.logout:hover {
+  color: #ff8a80;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .nav-center {
+    display: none;
+  }
+}

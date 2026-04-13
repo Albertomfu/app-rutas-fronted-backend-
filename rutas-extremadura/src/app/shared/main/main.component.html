@@ -1,0 +1,29 @@
+<section class="zona-view">
+  <div class="particles"></div>
+
+  @if (selectedZona && zonaComponentMap[selectedZona]) {
+    <ng-container [ngComponentOutlet]="zonaComponentMap[selectedZona]" />
+  } @else {
+    <div class="hero">
+      <!-- <div class="hero-title">
+        <h1>Explora Extremadura</h1>
+        <p>Descubre rutas naturales, montañas y paisajes únicos</p>
+      </div> -->
+
+      <div class="placeholder">
+        <div class="placeholder-card">
+          <div class="compass">🧭</div>
+
+          <h2>Selecciona una zona de Extremadura</h2>
+
+          <p>
+            Haz clic en el mapa para descubrir rutas, ríos y montañas
+            increíbles.
+          </p>
+
+          <span class="hint">Empieza tu aventura</span>
+        </div>
+      </div>
+    </div>
+  }
+</section>

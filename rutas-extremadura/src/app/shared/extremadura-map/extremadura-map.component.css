@@ -1,0 +1,405 @@
+.mapa {
+  display: flex;
+  flex-direction: column; /* uno debajo de otro */
+  align-items: center; /* centra horizontalmente */
+  /* padding: 1rem; */
+  gap: 2rem;
+}
+
+.map-title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  background-color: #e8f5e9;
+  padding: 0.75rem 1.5rem;
+  border-radius: 14px;
+  border: 3px solid #a5d6a7;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.map-title {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.map-title:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.hint {
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+  color: #689f38;
+  font-style: italic;
+  text-align: center;
+}
+
+.hint::before {
+  content: "👉 ";
+}
+
+.hint::before {
+  content: "ℹ️ ";
+}
+
+/* LA VERA */
+.laVera {
+  cursor: pointer;
+  fill: #81c784; /* verde suave */
+  stroke: #388e3c;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.laVera:hover {
+  fill: #66bb6a;
+  stroke: #2e7d32;
+  stroke-width: 4;
+}
+
+/* TRUJILLO */
+.trujillo {
+  cursor: pointer;
+  fill: #ffcc80; /* naranja pastel */
+  stroke: #f57c00;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.trujillo:hover {
+  fill: #ffa726;
+  stroke: #e65100;
+  stroke-width: 4;
+}
+
+/* ALAGÓN */
+.alagon {
+  cursor: pointer;
+  fill: #64b5f6; /* azul pastel */
+  stroke: #1e88e5;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.alagon:hover {
+  fill: #42a5f5;
+  stroke: #0d47a1;
+  stroke-width: 4;
+}
+
+/* JERTE */
+.jerte {
+  cursor: pointer;
+  fill: #ba68c8; /* lavanda suave */
+  stroke: #8e24aa;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.jerte:hover {
+  fill: #ab47bc;
+  stroke: #6a1b9a;
+  stroke-width: 4;
+}
+
+/* LAS HURDES */
+.lasHurdes {
+  cursor: pointer;
+  fill: #a1887f; /* marrón grisáceo */
+  stroke: #5d4037;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.lasHurdes:hover {
+  fill: #8d6e63;
+  stroke: #3e2723;
+  stroke-width: 4;
+}
+
+/* SIERRA DE GATA */
+.sierraDeGata {
+  cursor: pointer;
+  fill: #4db6ac; /* verde turquesa */
+  stroke: #00796b;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.sierraDeGata:hover {
+  fill: #26a69a;
+  stroke: #004d40;
+  stroke-width: 4;
+}
+
+/* AMBRÓZ */
+.ambroz {
+  cursor: pointer;
+  fill: #9575cd; /* violeta pastel */
+  stroke: #512da8;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.ambroz:hover {
+  fill: #7e57c2;
+  stroke: #311b92;
+  stroke-width: 4;
+}
+
+/* ALCÁNTARA */
+.alcantara {
+  cursor: pointer;
+  fill: #fff176; /* amarillo pastel */
+  stroke: #fbc02d;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.alcantara:hover {
+  fill: #ffee58;
+  stroke: #f9a825;
+  stroke-width: 4;
+}
+
+/* CÁCERES */
+.caceres {
+  cursor: pointer;
+  fill: #ff8a65; /* coral pastel */
+  stroke: #d84315;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.caceres:hover {
+  fill: #ff7043;
+  stroke: #bf360c;
+  stroke-width: 4;
+}
+
+/* CAMPO ARAÑUELO */
+.campoAranuelo {
+  cursor: pointer;
+  fill: #90a4ae; /* gris azulado suave */
+  stroke: #455a64;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.campoAranuelo:hover {
+  fill: #78909c;
+  stroke: #263238;
+  stroke-width: 4;
+}
+
+/* LOS IBORES */
+.losIbores {
+  cursor: pointer;
+  fill: #bcaaa4; /* marrón pastel */
+  stroke: #6d4c41;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.losIbores:hover {
+  fill: #a1887f;
+  stroke: #4e342e;
+  stroke-width: 4;
+}
+
+/* VALENCIA DE ALCÁNTARA */
+.valenciaDeAlcantara {
+  cursor: pointer;
+  fill: #f48fb1; /* rosa pastel */
+  stroke: #c2185b;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.valenciaDeAlcantara:hover {
+  fill: #f06292;
+  stroke: #880e4f;
+  stroke-width: 4;
+}
+
+/* LAS VILLUERCAS */
+.lasVilluercas {
+  cursor: pointer;
+  fill: #4db6ac; /* verde agua */
+  stroke: #00695c;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.lasVilluercas:hover {
+  fill: #26a69a;
+  stroke: #004d40;
+  stroke-width: 4;
+}
+
+/* ALBURQUERQUE */
+.alburquerque {
+  cursor: pointer;
+  fill: #d7ccc8; /* beige suave */
+  stroke: #8d6e63;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.alburquerque:hover {
+  fill: #bcaaa4;
+  stroke: #5d4037;
+  stroke-width: 4;
+}
+
+/* LA SIBERIA */
+.laSiberia {
+  cursor: pointer;
+  fill: #b39ddb; /* violeta gris */
+  stroke: #512da8;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.laSiberia:hover {
+  fill: #9575cd;
+  stroke: #311b92;
+  stroke-width: 4;
+}
+
+/* BADAJOZ */
+.badajoz {
+  cursor: pointer;
+  fill: #ffe082; /* dorado pastel */
+  stroke: #ffb300;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.badajoz:hover {
+  fill: #ffd54f;
+  stroke: #ff8f00;
+  stroke-width: 4;
+}
+
+/* LA SERENA */
+.laSerena {
+  cursor: pointer;
+  fill: #ffe0b2; /* arena pastel */
+  stroke: #ffb74d;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.laSerena:hover {
+  fill: #ffcc80;
+  stroke: #f57c00;
+  stroke-width: 4;
+}
+
+/* MÉRIDA */
+.merida {
+  cursor: pointer;
+  fill: #b0bec5; /* gris suave */
+  stroke: #546e7a;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.merida:hover {
+  fill: #90a4ae;
+  stroke: #37474f;
+  stroke-width: 4;
+}
+
+/* DON BENITO */
+.donBenito {
+  cursor: pointer;
+  fill: #ffcc80; /* naranja pastel */
+  stroke: #fb8c00;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.donBenito:hover {
+  fill: #ffa726;
+  stroke: #ef6c00;
+  stroke-width: 4;
+}
+
+/* OLIVENZA */
+.olivenza {
+  cursor: pointer;
+  fill: #f48fb1; /* rosa suave */
+  stroke: #c2185b;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.olivenza:hover {
+  fill: #f06292;
+  stroke: #880e4f;
+  stroke-width: 4;
+}
+
+/* TIERRA DE BARROS */
+.tierraDeBarros {
+  cursor: pointer;
+  fill: #d7ccc8; /* beige cálido */
+  stroke: #8d6e63;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.tierraDeBarros:hover {
+  fill: #bcaaa4;
+  stroke: #5d4037;
+  stroke-width: 4;
+}
+
+/* CAMPIÑA SUR */
+.campinaSur {
+  cursor: pointer;
+  fill: #b497bd; /* lavanda suave */
+  stroke: #6b4d7b;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.campinaSur:hover {
+  fill: #9060a0;
+  stroke: #3f224f;
+  stroke-width: 4;
+}
+
+/* JEREZ DE LOS CABALLEROS */
+.jerezDeLosCaballeros {
+  cursor: pointer;
+  fill: #d46a4c; /* terracota suave */
+  stroke: #8a3523;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.jerezDeLosCaballeros:hover {
+  fill: #b8432b;
+  stroke: #4e1c12;
+  stroke-width: 4;
+}
+
+/* TENTUDIA */
+.tentudia {
+  cursor: pointer;
+  fill: #6c8ea4; /* azul gris pastel */
+  stroke: #3a4d5c;
+  stroke-width: 3;
+  transition: all 0.3s;
+}
+.tentudia:hover {
+  fill: #52758a;
+  stroke: #1f2b34;
+  stroke-width: 4;
+}
+
+text:hover {
+  cursor: pointer;
+}
+.map-text {
+  font-size: 18px;
+  font-family: Arial;
+  fill: #000; /* color inicial negro */
+  cursor: pointer;
+
+  /* clave para SVG */
+  transform-box: fill-box;
+  transform-origin: center;
+
+  /* transición suave */
+  transition: transform 0.25s ease, fill 0.25s ease, filter 0.25s ease;
+}
+
+.map-text:hover {
+  transform: scale(3); /* aumento moderado */
+  fill: #76ff03; /* verde lima brillante */
+  filter: drop-shadow(2px 2px 2px rgba(255, 255, 255, 0.8))
+    /* sombra blanca para contraste */ drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5)); /* sombra negra para profundidad */
+  font-weight: bold; /* más legible */
+}
