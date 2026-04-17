@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-tentudia',
   imports: [],
   templateUrl: './tentudia.component.html',
   styleUrl: './tentudia.component.css',
 })
-export class TentudiaComponent {
-  rutas = [
+export class TentudiaComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta al Pico Tentudía',
       salida: 'Monasterio de Tentudía',
@@ -87,4 +88,16 @@ export class TentudiaComponent {
         'https://es.wikiloc.com/rutas-senderismo/segura-de-leon-ruta-circular-sierra-de-la-martela-38152991',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'tentudia', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

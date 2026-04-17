@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-sierra-de-gata',
   imports: [],
   templateUrl: './sierra-de-gata.component.html',
   styleUrl: './sierra-de-gata.component.css',
 })
-export class SierraDeGataComponent {
-  rutas = [
+export class SierraDeGataComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Chorrituelo de Ovejuela',
       salida: 'Ovejuela',
@@ -98,4 +99,16 @@ export class SierraDeGataComponent {
         'https://es.wikiloc.com/rutas-senderismo/ermita-del-cristo-y-iglesia-de-la-asuncion-desde-torre-de-don-miguel-169931963',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'sierraDeGata', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

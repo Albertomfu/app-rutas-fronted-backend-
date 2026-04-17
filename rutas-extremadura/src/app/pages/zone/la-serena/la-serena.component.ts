@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-la-serena',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './la-serena.component.html',
   styleUrl: './la-serena.component.css',
 })
-export class LaSerenaComponent {
-  rutas = [
+export class LaSerenaComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta de los Tartesos',
       salida: 'Zalamea de la Serena',
@@ -100,4 +102,17 @@ export class LaSerenaComponent {
         'https://es.wikiloc.com/rutas-senderismo/cancho-roano-desde-quintana-de-la-serena-2024-164900332',
     },
   ];
+
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'laSerena', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

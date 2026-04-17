@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-campo-aranuelo',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './campo-aranuelo.component.html',
   styleUrl: './campo-aranuelo.component.css',
 })
-export class CampoAranueloComponent {
-  rutas = [
+export class CampoAranueloComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta del Castillo de Belvís',
       salida: 'Belvís de Monroy',
@@ -139,4 +141,17 @@ export class CampoAranueloComponent {
         'https://www.wikiloc.com/rutas-senderismo/peraleda-de-la-mata-navalmoral-de-la-mata-6134105',
     },
   ];
+
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'campoAranuelo', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

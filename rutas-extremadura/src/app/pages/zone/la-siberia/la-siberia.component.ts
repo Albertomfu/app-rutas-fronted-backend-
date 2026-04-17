@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-la-siberia',
   imports: [],
   templateUrl: './la-siberia.component.html',
   styleUrl: './la-siberia.component.css',
 })
-export class LaSiberiaComponent {
-  rutas = [
+export class LaSiberiaComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta del Embalse de García de Sola',
       salida: 'Puerto Peña',
@@ -140,4 +141,16 @@ export class LaSiberiaComponent {
         'https://es.wikiloc.com/rutas-senderismo/paseos-rurales-castillo-de-herrera-del-duque-32305762?utm_source=chatgpt.com',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'laSiberia', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

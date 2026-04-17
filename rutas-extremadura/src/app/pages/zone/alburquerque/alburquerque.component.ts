@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-alburquerque',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './alburquerque.component.html',
   styleUrl: './alburquerque.component.css',
 })
-export class AlburquerqueComponent {
-  rutas = [
+export class AlburquerqueComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta del Castillo de Luna y Ermita',
       salida: 'Alburquerque',
@@ -136,4 +138,16 @@ export class AlburquerqueComponent {
       wikiloc: 'https://es.wikiloc.com/rutas-senderismo/alburquerque-124576436',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'alburquerque', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

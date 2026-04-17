@@ -6,7 +6,7 @@ import { RutasService } from '../../../services/rutas.service';
   templateUrl: './alagon.component.html',
   styleUrl: './alagon.component.css',
 })
-export class AlagonComponent {
+export class AlagonComponent implements OnInit {
   rutas: any[] = [];
   rutasLocales = [
     {

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-las-hurdes',
   imports: [],
   templateUrl: './las-hurdes.component.html',
   styleUrl: './las-hurdes.component.css',
 })
-export class LasHurdesComponent {
-  rutas = [
+export class LasHurdesComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Meandro del Melero',
       salida: 'Riolobos de Hurdes',
@@ -138,4 +139,16 @@ export class LasHurdesComponent {
         'https://es.wikiloc.com/rutas-senderismo/ruta-los-canchos-de-ramiro-152301863',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'lasHurdes', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

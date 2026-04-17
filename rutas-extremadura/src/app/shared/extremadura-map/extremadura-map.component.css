@@ -19,7 +19,9 @@
 }
 
 .map-title {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .map-title:hover {
@@ -393,7 +395,10 @@ text:hover {
   transform-origin: center;
 
   /* transición suave */
-  transition: transform 0.25s ease, fill 0.25s ease, filter 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    fill 0.25s ease,
+    filter 0.25s ease;
 }
 
 .map-text:hover {

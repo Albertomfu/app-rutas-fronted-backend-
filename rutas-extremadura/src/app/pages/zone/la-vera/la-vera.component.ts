@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-la-vera',
   standalone: true,
@@ -7,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './la-vera.component.html',
   styleUrls: ['./la-vera.component.css'],
 })
-export class LaVeraComponent {
-  rutas = [
+export class LaVeraComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Garganta de Cuartos',
       salida: 'Losar de la Vera',
@@ -140,4 +141,16 @@ export class LaVeraComponent {
         'https://es.wikiloc.com/rutas-senderismo/ruta-el-cielo-de-la-vera-cascada-del-diablo-el-cielo-de-la-vera-58420722',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'laVera', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

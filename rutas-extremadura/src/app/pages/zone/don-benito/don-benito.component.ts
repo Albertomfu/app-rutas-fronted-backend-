@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-don-benito',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './don-benito.component.html',
   styleUrl: './don-benito.component.css',
 })
-export class DonBenitoComponent {
-  rutas = [
+export class DonBenitoComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Paseo del Río Guadiana',
       salida: 'Don Benito',
@@ -126,5 +128,18 @@ export class DonBenitoComponent {
         'https://es.wikiloc.com/rutas-senderismo/alcala-del-jucar-molino-de-don-benito-34909801',
     },
   ];
+
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'donBenito', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }
 //

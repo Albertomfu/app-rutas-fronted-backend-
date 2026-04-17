@@ -25,7 +25,7 @@ exports.register = async (req, res) => {
       expiresIn: "1d",
     });
 
-    res.json({ token, user }); // 👈 IMPORTANTE
+    res.json({ token, user });
   } catch (error) {
     res.status(500).json(error);
   }

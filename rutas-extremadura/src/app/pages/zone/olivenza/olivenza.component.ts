@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-olivenza',
   imports: [],
   templateUrl: './olivenza.component.html',
   styleUrl: './olivenza.component.css',
 })
-export class OlivenzaComponent {
-  rutas = [
+export class OlivenzaComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta de los Puentes de Ajuda',
       salida: 'Olivenza',
@@ -87,4 +88,16 @@ export class OlivenzaComponent {
         'https://es.wikiloc.com/rutas-senderismo/ruta-de-las-corujas-9617709',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'olivenza', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

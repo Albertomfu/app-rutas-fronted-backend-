@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-los-ibores',
   imports: [],
   templateUrl: './los-ibores.component.html',
   styleUrl: './los-ibores.component.css',
 })
-export class LosIboresComponent {
-  rutas = [
+export class LosIboresComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta Ibores',
       salida: 'Castañar de Ibor',
@@ -73,4 +74,16 @@ export class LosIboresComponent {
         'https://es.wikiloc.com/rutas-senderismo/castanar-de-ibor-castanos-y-chorreras-de-calabazas-geoparque-villuercas-ibores-jara-video-36895725',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'losIbores', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

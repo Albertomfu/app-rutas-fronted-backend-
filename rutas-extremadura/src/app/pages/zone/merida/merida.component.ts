@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-merida',
   imports: [],
   templateUrl: './merida.component.html',
   styleUrl: './merida.component.css',
 })
-export class MeridaComponent {
-  rutas = [
+export class MeridaComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Mérida Monumental',
       salida: 'Mérida (centro histórico)',
@@ -114,4 +115,16 @@ export class MeridaComponent {
         'https://es.wikiloc.com/rutas-senderismo/merida-embalse-de-proserpina-iglesia-nuestra-senora-de-la-consolacion-iglesia-de-san-andres-162479357',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'merida', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

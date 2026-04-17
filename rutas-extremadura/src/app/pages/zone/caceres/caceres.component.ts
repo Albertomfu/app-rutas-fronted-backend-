@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-caceres',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './caceres.component.html',
   styleUrl: './caceres.component.css',
 })
-export class CaceresComponent {
-  rutas = [
+export class CaceresComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta Monumental del Casco Histórico',
       salida: 'Plaza Mayor de Cáceres',
@@ -135,4 +137,16 @@ export class CaceresComponent {
       wikiloc: 'https://www.wikiloc.com/trails/hiking/caceres-nocturno',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'caceres', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

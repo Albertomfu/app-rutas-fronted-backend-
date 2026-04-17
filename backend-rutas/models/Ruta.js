@@ -1,20 +1,3 @@
-// const mongoose = require("mongoose");
-
-// const RutaSchema = new mongoose.Schema({
-//   nombre: String,
-//   salida: String,
-//   llegada: String,
-//   km: Number,
-//   duracion: String,
-//   dificultad: String,
-//   tipo: String,
-//   imagen: String,
-//   maps: String,
-//   wikiloc: String,
-// });
-
-// module.exports = mongoose.model("Ruta", RutaSchema);
-
 const mongoose = require("mongoose");
 
 const RutaSchema = new mongoose.Schema({

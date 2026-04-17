@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-badajoz',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './badajoz.component.html',
   styleUrl: './badajoz.component.css',
 })
-export class BadajozComponent {
-  rutas = [
+export class BadajozComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta del Río Guadiana',
       salida: 'Badajoz',
@@ -137,4 +139,16 @@ export class BadajozComponent {
       wikiloc: 'https://www.wikiloc.com/trails/hiking/ruta-nocturna-badajoz',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'badajoz', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

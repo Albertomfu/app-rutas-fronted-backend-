@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-trujillo',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './trujillo.component.html',
   styleUrl: './trujillo.component.css',
 })
-export class TrujilloComponent {
-  rutas = [
+export class TrujilloComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta al Castillo de Trujillo',
       salida: 'Plaza Mayor',
@@ -125,4 +127,16 @@ export class TrujilloComponent {
         'https://es.wikiloc.com/rutas-senderismo/merida-monumental-33865553',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'trujillo', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

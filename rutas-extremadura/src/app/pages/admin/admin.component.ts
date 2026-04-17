@@ -92,4 +92,45 @@ export class AdminComponent implements OnInit {
     this.editando = false;
     this.rutaEditandoId = '';
   }
+  formatearTipo(tipo: string): string {
+    switch (tipo) {
+      case 'solo_ida':
+        return 'Solo Ida';
+      case 'ida_vuelta':
+        return 'Ida y Vuelta';
+      case 'circular':
+        return 'Circular';
+      default:
+        return tipo;
+    }
+  }
+  formatearDificultad(dif: string): string {
+    switch (dif) {
+      case 'facil':
+        return 'Fácil';
+      case 'media':
+        return 'Media';
+      case 'dificil':
+        return 'Difícil';
+      default:
+        return dif;
+    }
+  }
+  selectedFile: File | null = null;
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+
+    if (file) {
+      this.selectedFile = file;
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.nuevaRuta.imagen = reader.result as string;
+      };
+
+      reader.readAsDataURL(file);
+    }
+  }
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-ambroz',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './ambroz.component.html',
   styleUrl: './ambroz.component.css',
 })
-export class AmbrozComponent {
-  rutas = [
+export class AmbrozComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Camino de Arrieros (Hervás – Baños)',
       salida: 'Hervás',
@@ -126,4 +128,16 @@ export class AmbrozComponent {
         'https://es.wikiloc.com/rutas-senderismo/rutas-periurbanas-hervas-3km-xxx', // puedes usar paseo periurbano vinculado a Hervás :contentReference[oaicite:9]{index=9}
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'ambroz', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-campina-sur',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './campina-sur.component.html',
   styleUrl: './campina-sur.component.css',
 })
-export class CampinaSurComponent {
-  rutas = [
+export class CampinaSurComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta al Castillo de Reina',
       salida: 'Reina',
@@ -114,4 +116,16 @@ export class CampinaSurComponent {
         'https://es.wikiloc.com/rutas-senderismo/reina-alcazaba-badajoz-123521796',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'campinaSur', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

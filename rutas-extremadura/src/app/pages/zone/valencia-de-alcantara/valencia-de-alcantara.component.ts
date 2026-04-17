@@ -8,7 +8,8 @@ import { RutasService } from '../../../services/rutas.service';
   styleUrl: './valencia-de-alcantara.component.css',
 })
 export class ValenciaDeAlcantaraComponent implements OnInit {
-  rutasEstaticas = [
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta de los Dólmenes',
       salida: 'Valencia de Alcántara',
@@ -88,22 +89,17 @@ export class ValenciaDeAlcantaraComponent implements OnInit {
         'https://es.wikiloc.com/rutas-senderismo/valencia-de-alcantara-santo-antonio-por-el-fraguil-17092262',
     },
   ];
-  // 🔹 RUTAS DINÁMICAS (admin)
-  rutasBackend: any[] = [];
-
-  // 🔹 COMBINADAS (las que usa el HTML)
-  rutas: any[] = [];
 
   constructor(private rutasService: RutasService) {}
 
   ngOnInit() {
     this.rutasService.getRutas().subscribe((res: any) => {
-      this.rutasBackend = res.filter(
-        (ruta: any) => ruta.zona === 'valenciaDeAlcantara',
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'valenciaDeAlcantara', // 👈 CLAVE
       );
 
-      // 🔥 AQUÍ ESTÁ LA CLAVE
-      this.rutas = [...this.rutasEstaticas, ...this.rutasBackend];
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
     });
   }
 }

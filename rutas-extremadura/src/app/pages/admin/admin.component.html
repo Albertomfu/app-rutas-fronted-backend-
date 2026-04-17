@@ -1,76 +1,170 @@
 <div class="admin-container">
   <h2>Panel Admin - Rutas</h2>
 
-  <!-- FORM -->
-  <form (ngSubmit)="guardarRuta()">
+  <form #form="ngForm" (ngSubmit)="guardarRuta()">
+    <!-- NOMBRE -->
     <input
       [(ngModel)]="nuevaRuta.nombre"
       name="nombre"
       placeholder="Nombre"
       required
+      maxlength="60"
+      #nombre="ngModel"
     />
-    <select [(ngModel)]="nuevaRuta.zona" name="zona" required>
+    <small *ngIf="form.submitted && nombre.invalid">
+      Nombre obligatorio (máx 60 caracteres)
+    </small>
+
+    <!-- ZONAS -->
+    <select [(ngModel)]="nuevaRuta.zona" name="zona" required #zona="ngModel">
       <option value="">Selecciona zona</option>
 
-      <option value="valenciaDeAlcantara">Valencia de Alcántara</option>
+      <!-- CÁCERES -->
+      <option value="alagon">Valle del Alagón</option>
+      <option value="losIbores">Los Ibores</option>
       <option value="sierraDeGata">Sierra de Gata</option>
-      <option value="jerte">Valle del Jerte</option>
+      <option value="lasHurdes">Las Hurdes</option>
+      <option value="ambroz">Valle del Ambroz</option>
+      <option value="elJerte">Valle del Jerte</option>
       <option value="laVera">La Vera</option>
+      <option value="campoAranuelo">Campo Arañuelo</option>
+      <option value="lasVilluercas">Las Villuercas</option>
+      <option value="trujillo">Trujillo</option>
       <option value="caceres">Cáceres</option>
+      <option value="alcantara">Alcántara</option>
+      <option value="valenciaDeAlcantara">Valencia de Alcántara</option>
+
+      <!-- BADAJOZ -->
+      <option value="laSiberia">La Siberia</option>
+      <option value="laSerena">La Serena</option>
+      <option value="donBenito">Don Benito</option>
+      <option value="merida">Mérida</option>
+      <option value="tierraDeBarros">Tierra de Barros</option>
+      <option value="campinaSur">Campiña Sur</option>
+      <option value="jerezDeLosCaballeros">Jerez de los Caballeros</option>
+      <option value="olivenza">Olivenza</option>
+      <option value="tentudia">Tentudía</option>
       <option value="badajoz">Badajoz</option>
+      <option value="alburquerque">Alburquerque</option>
     </select>
-    <input [(ngModel)]="nuevaRuta.salida" name="salida" placeholder="Salida" />
+    <small *ngIf="form.submitted && zona.invalid"> Selecciona una zona </small>
+
+    <!-- SALIDA -->
+    <input
+      [(ngModel)]="nuevaRuta.salida"
+      name="salida"
+      placeholder="Salida"
+      maxlength="60"
+    />
+
+    <!-- LLEGADA -->
     <input
       [(ngModel)]="nuevaRuta.llegada"
       name="llegada"
       placeholder="Llegada"
+      maxlength="60"
     />
-    <input [(ngModel)]="nuevaRuta.km" name="km" placeholder="Km" />
+
+    <!-- KM -->
+    <input
+      [(ngModel)]="nuevaRuta.km"
+      name="km"
+      placeholder="Km (ej: 1.5)"
+      pattern="^[0-9]+(\.[0-9]+)?$"
+      #km="ngModel"
+    />
+    <small *ngIf="form.submitted && km.invalid && nuevaRuta.km">
+      Solo números (ej: 1.5)
+    </small>
+
+    <!-- DURACIÓN -->
     <input
       [(ngModel)]="nuevaRuta.duracion"
       name="duracion"
-      placeholder="Duración"
+      placeholder="Duración (ej: 3 h)"
+      pattern="^[0-9]+ ?h$"
+      #duracion="ngModel"
     />
-    <!--
-     <select [(ngModel)]="nuevaRuta.zona" name="zona" required>
-      <option value="">Selecciona zona</option>
+    <small *ngIf="form.submitted && duracion.invalid && nuevaRuta.duracion">
+      Formato válido: 3 h
+    </small>
 
-      <option value="valenciaDeAlcantara">Valencia de Alcántara</option>
-      <option value="sierraDeGata">Sierra de Gata</option>
-      <option value="jerte">Valle del Jerte</option>
-      <option value="laVera">La Vera</option>
-      <option value="caceres">Cáceres</option>
-      <option value="badajoz">Badajoz</option>
-    </select> -->
-    <select [(ngModel)]="nuevaRuta.dificultad" name="dificultad" required>
+    <!-- DIFICULTAD -->
+    <select
+      [(ngModel)]="nuevaRuta.dificultad"
+      name="dificultad"
+      required
+      #dificultad="ngModel"
+    >
       <option value="">Selecciona dificultad</option>
       <option value="facil">Fácil</option>
       <option value="media">Media</option>
       <option value="dificil">Difícil</option>
     </select>
+    <small *ngIf="form.submitted && dificultad.invalid">
+      Selecciona dificultad
+    </small>
 
-    <select [(ngModel)]="nuevaRuta.tipo" name="tipo" required>
-      <option value="" disabled selected>Selecciona tipo</option>
-      <option value="solo_ida">Solo ida</option>
-      <option value="ida_vuelta">Ida y vuelta</option>
+    <!-- TIPO -->
+    <select [(ngModel)]="nuevaRuta.tipo" name="tipo" required #tipo="ngModel">
+      <option value="">Selecciona tipo</option>
+      <option value="solo_ida">Solo Ida</option>
+      <option value="ida_vuelta">Ida y Vuelta</option>
       <option value="circular">Circular</option>
     </select>
+    <small *ngIf="form.submitted && tipo.invalid"> Selecciona tipo </small>
 
+    <!-- IMAGEN POR URL -->
     <input
       [(ngModel)]="nuevaRuta.imagen"
       name="imagen"
       placeholder="URL Imagen"
+      pattern="https?://.+"
+      #imagen="ngModel"
     />
+    <small *ngIf="form.submitted && imagen.invalid && nuevaRuta.imagen">
+      URL inválida
+    </small>
+
+    <!-- O SUBIR DESDE TU PC -->
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+
+    <!-- PREVIEW DE IMAGEN -->
+    <img
+      *ngIf="nuevaRuta.imagen"
+      [src]="nuevaRuta.imagen"
+      style="
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-top: 10px;
+      "
+    />
+
+    <!-- GOOGLE MAPS -->
     <input
       [(ngModel)]="nuevaRuta.maps"
       name="maps"
       placeholder="Link Google Maps"
+      pattern="https?://.+"
+      #maps="ngModel"
     />
+    <small *ngIf="form.submitted && maps.invalid && nuevaRuta.maps">
+      URL inválida
+    </small>
+
+    <!-- WIKILOC -->
     <input
       [(ngModel)]="nuevaRuta.wikiloc"
       name="wikiloc"
       placeholder="Link Wikiloc"
+      pattern="https?://.+"
+      #wikiloc="ngModel"
     />
+    <small *ngIf="form.submitted && wikiloc.invalid && nuevaRuta.wikiloc">
+      URL inválida
+    </small>
 
     <button type="submit">
       {{ editando ? "Actualizar" : "Crear" }}
@@ -83,22 +177,37 @@
 
   <!-- LISTA -->
   <div class="rutas-list">
-    <div class="ruta-card" *ngFor="let ruta of rutas">
-      <h3>{{ ruta.nombre }}</h3>
-      <p>{{ ruta.zona }}</p>
-      <p>{{ ruta.descripcion }}</p>
-      <p>{{ ruta.salida }}</p>
-      <p>{{ ruta.llegada }}</p>
-      <p>{{ ruta.km }}</p>
-      <p>{{ ruta.duracion }}</p>
-      <p>{{ ruta.dificultad }}</p>
-      <p>{{ ruta.tipo }}</p>
-      <p>{{ ruta.imagen }}</p>
-      <p>{{ ruta.maps }}</p>
-      <p>{{ ruta.wikiloc }}</p>
+    <article class="ruta-card" *ngFor="let ruta of rutas">
+      <img [src]="ruta.imagen" [alt]="ruta.nombre" />
 
-      <button (click)="editarRuta(ruta)">Editar</button>
-      <button (click)="eliminarRuta(ruta._id)">Eliminar</button>
-    </div>
+      <div class="ruta-info">
+        <h3>{{ ruta.nombre }}</h3>
+
+        <ul>
+          <li><strong>Zona:</strong> {{ ruta.zona }}</li>
+          <li><strong>Salida:</strong> {{ ruta.salida }}</li>
+          <li><strong>Llegada:</strong> {{ ruta.llegada }}</li>
+          <li><strong>Distancia:</strong> {{ ruta.km }} km</li>
+          <li><strong>Duración:</strong> {{ ruta.duracion }}</li>
+          <li>
+            <strong>Dificultad:</strong>
+            {{ formatearDificultad(ruta.dificultad) }}
+          </li>
+          <li><strong>Tipo:</strong> {{ formatearTipo(ruta.tipo) }}</li>
+        </ul>
+
+        <div class="ruta-links">
+          <a class="maps" [href]="ruta.maps" target="_blank"> Google Maps </a>
+
+          <a class="wikiloc" [href]="ruta.wikiloc" target="_blank"> Wikiloc </a>
+        </div>
+
+        <!-- BOTONES ADMIN -->
+        <div class="admin-actions">
+          <button (click)="editarRuta(ruta)">Editar</button>
+          <button (click)="eliminarRuta(ruta._id)">Eliminar</button>
+        </div>
+      </div>
+    </article>
   </div>
 </div>

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-tierra-de-barros',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './tierra-de-barros.component.html',
   styleUrl: './tierra-de-barros.component.css',
 })
-export class TierraDeBarrosComponent {
-  rutas = [
+export class TierraDeBarrosComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Circular Villalba de los Barros – Ermita San Isidro y Pantano',
       salida: 'Villalba de los Barros',
@@ -87,4 +89,16 @@ export class TierraDeBarrosComponent {
         'https://es.wikiloc.com/rutas-senderismo/sierra-grande-de-hornachos-3408900',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'tierraDeBarros', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

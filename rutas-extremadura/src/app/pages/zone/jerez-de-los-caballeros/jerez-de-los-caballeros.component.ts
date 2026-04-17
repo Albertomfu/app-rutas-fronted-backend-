@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 
 @Component({
   selector: 'app-jerez-de-los-caballeros',
@@ -6,8 +7,9 @@ import { Component } from '@angular/core';
   templateUrl: './jerez-de-los-caballeros.component.html',
   styleUrl: './jerez-de-los-caballeros.component.css',
 })
-export class JerezDeLosCaballerosComponent {
-  rutas = [
+export class JerezDeLosCaballerosComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta Monumental del Casco Histórico',
       salida: 'Plaza de España',
@@ -139,4 +141,17 @@ export class JerezDeLosCaballerosComponent {
         'https://www.wikiloc.com/hiking-trails/castillo-de-reina-desde-reina-5080676',
     },
   ];
+
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'jerezDeLosCaballeros', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

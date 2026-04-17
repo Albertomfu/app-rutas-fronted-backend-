@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-las-villuercas',
   imports: [],
   templateUrl: './las-villuercas.component.html',
   styleUrl: './las-villuercas.component.css',
 })
-export class LasVilluercasComponent {
-  rutas = [
+export class LasVilluercasComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Camino Natural de Las Villuercas',
       salida: 'Puerto Rey',
@@ -87,4 +88,16 @@ export class LasVilluercasComponent {
         'https://es.wikiloc.com/rutas-senderismo/molinos-del-guadalupejo-y-viaducto-3707712',
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'alagon', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

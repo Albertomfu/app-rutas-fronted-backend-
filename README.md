@@ -17,6 +17,8 @@ app-rutas
 │  ├─ routes
 │  │  ├─ auth.js
 │  │  └─ rutas.js
+│  ├─ scripts
+│  │  └─ resetPassword.js
 │  └─ server.js
 └─ rutas-extremadura
    ├─ .angular
@@ -32,22 +34,24 @@ app-rutas
    │              │  ├─ @angular_common_http.js.map
    │              │  ├─ @angular_core.js
    │              │  ├─ @angular_core.js.map
+   │              │  ├─ @angular_forms.js
+   │              │  ├─ @angular_forms.js.map
    │              │  ├─ @angular_platform-browser.js
    │              │  ├─ @angular_platform-browser.js.map
    │              │  ├─ @angular_router.js
    │              │  ├─ @angular_router.js.map
-   │              │  ├─ chunk-47XN3ORK.js
-   │              │  ├─ chunk-47XN3ORK.js.map
-   │              │  ├─ chunk-ECN4UJ7V.js
-   │              │  ├─ chunk-ECN4UJ7V.js.map
-   │              │  ├─ chunk-KUL5PHZD.js
-   │              │  ├─ chunk-KUL5PHZD.js.map
+   │              │  ├─ chunk-4M6VMULJ.js
+   │              │  ├─ chunk-4M6VMULJ.js.map
+   │              │  ├─ chunk-EOZNACFT.js
+   │              │  ├─ chunk-EOZNACFT.js.map
    │              │  ├─ chunk-MDB3JHPX.js
    │              │  ├─ chunk-MDB3JHPX.js.map
+   │              │  ├─ chunk-NKDADFQW.js
+   │              │  ├─ chunk-NKDADFQW.js.map
+   │              │  ├─ chunk-PGMRPSMI.js
+   │              │  ├─ chunk-PGMRPSMI.js.map
    │              │  ├─ chunk-S35MAB2V.js
    │              │  ├─ chunk-S35MAB2V.js.map
-   │              │  ├─ chunk-VUVVUJVY.js
-   │              │  ├─ chunk-VUVVUJVY.js.map
    │              │  ├─ package.json
    │              │  ├─ rxjs.js
    │              │  ├─ rxjs.js.map
@@ -315,6 +319,12 @@ app-rutas
    │  │  │     ├─ home.component.spec.ts
    │  │  │     └─ home.component.ts
    │  │  ├─ core
+   │  │  │  ├─ guards
+   │  │  │  │  ├─ auth.guard.spec.ts
+   │  │  │  │  └─ auth.guard.ts
+   │  │  │  ├─ interceptors
+   │  │  │  │  ├─ auth.interceptor.spec.ts
+   │  │  │  │  └─ auth.interceptor.ts
    │  │  │  └─ layout
    │  │  │     ├─ layout-footer
    │  │  │     │  ├─ layout-footer.component.css
@@ -327,11 +337,26 @@ app-rutas
    │  │  │        ├─ layout-header.component.spec.ts
    │  │  │        └─ layout-header.component.ts
    │  │  ├─ pages
+   │  │  │  ├─ admin
+   │  │  │  │  ├─ admin.component.css
+   │  │  │  │  ├─ admin.component.html
+   │  │  │  │  ├─ admin.component.spec.ts
+   │  │  │  │  └─ admin.component.ts
    │  │  │  ├─ info
    │  │  │  │  ├─ info.component.css
    │  │  │  │  ├─ info.component.html
    │  │  │  │  ├─ info.component.spec.ts
    │  │  │  │  └─ info.component.ts
+   │  │  │  ├─ login
+   │  │  │  │  ├─ login.component.css
+   │  │  │  │  ├─ login.component.html
+   │  │  │  │  ├─ login.component.spec.ts
+   │  │  │  │  └─ login.component.ts
+   │  │  │  ├─ register
+   │  │  │  │  ├─ register.component.css
+   │  │  │  │  ├─ register.component.html
+   │  │  │  │  ├─ register.component.spec.ts
+   │  │  │  │  └─ register.component.ts
    │  │  │  ├─ zonas
    │  │  │  │  ├─ zonas.component.css
    │  │  │  │  ├─ zonas.component.html

@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { RutasService } from '../../../services/rutas.service';
 @Component({
   selector: 'app-alcantara',
   imports: [],
   templateUrl: './alcantara.component.html',
   styleUrl: './alcantara.component.css',
 })
-export class AlcantaraComponent {
-  rutas = [
+export class AlcantaraComponent implements OnInit {
+  rutas: any[] = [];
+  rutasLocales = [
     {
       nombre: 'Ruta Puente Romano y Miradores',
       salida: 'Alcántara',
@@ -139,4 +140,16 @@ export class AlcantaraComponent {
         'https://es.wikiloc.com/rutas-senderismo/puente-romano-de-alcantara-2-5km-xxx', // ruta corta cerca del puente :contentReference[oaicite:10]{index=10}
     },
   ];
+  constructor(private rutasService: RutasService) {}
+
+  ngOnInit() {
+    this.rutasService.getRutas().subscribe((res: any) => {
+      const rutasBackend = res.filter(
+        (ruta: any) => ruta.zona === 'alcantara', // 👈 CLAVE
+      );
+
+      // 🔥 UNIMOS TODO
+      this.rutas = [...this.rutasLocales, ...rutasBackend];
+    });
+  }
 }

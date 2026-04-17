@@ -8,7 +8,9 @@ const authRoutes = require("./routes/auth");
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+// app.use(express.json()); // hay que limitar los megas para subir fotos ya que si no ocupa muchisimo he cambiado lo anterior por:
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 mongoose
   .connect("mongodb://localhost:27017/extrerutas")
