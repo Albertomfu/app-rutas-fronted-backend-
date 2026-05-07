@@ -96,7 +96,7 @@ export class CampoAranueloComponent implements OnInit {
       dificultad: 'Media',
       duracion: '3 h',
       tipo: 'circular',
-      imagen: 'images/campo-aranuelo/via-verde-tajo.jpeg',
+      imagen: 'images/campo-aranuelo/via-verde-tajo.png',
       maps: 'https://www.google.com/maps/search/Via+Verde+del+Tajo',
       wikiloc:
         'https://es.wikiloc.com/rutas-senderismo/almaraz-puente-del-tajo-almaraz-127354888',
