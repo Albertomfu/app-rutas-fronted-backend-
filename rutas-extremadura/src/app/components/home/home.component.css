@@ -4,6 +4,7 @@
   min-height: calc(100vh - 160px);
   gap: 0.5rem;
   margin-top: 1.5rem;
+  align-items: start;
 }
 
 .sidebar {
@@ -12,7 +13,7 @@
   border-radius: 16px;
   padding: 0.5rem;
   position: sticky;
-  top: 0;
+  top: 92px;
   height: fit-content;
 }
 
@@ -24,10 +25,18 @@
 @media (max-width: 900px) {
   .home-layout {
     grid-template-columns: 1fr;
+    margin-top: 1rem;
   }
 
   .sidebar {
+    position: static;
     margin-bottom: 1rem;
     width: 100%;
+    top: auto;
+    padding: 0.65rem;
+  }
+
+  .content {
+    padding: 0.75rem;
   }
 }

@@ -1,37 +1,41 @@
 <header class="header">
   <div class="header-container">
-    <!-- LOGO -->
-    <div class="logo">
-      <h1 routerLink="/">ExtreRutas</h1>
+    <div class="brand">
+      <a routerLink="/" class="logo-link" aria-label="Ir al inicio">
+        <!-- <img src="logoExtreruta.png" alt="ExtreRutas" class="logo-img" /> -->
+        <div class="brand-copy">
+          <strong>ExtreRutas</strong>
+          <span>Turismo natural de Extremadura</span>
+        </div>
+      </a>
     </div>
 
-    <!-- MENÚ CENTRAL -->
-    <nav class="nav-center">
+    <nav class="nav-center" aria-label="Navegacion principal">
       <a
         routerLink="/"
+        class="nav-link"
         routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: true }"
         >Inicio</a
       >
-      <a routerLink="/rutas" routerLinkActive="active">Rutas</a>
-      <a routerLink="/zonas" routerLinkActive="active">Zonas</a>
-      <a routerLink="/clima" routerLinkActive="active">Clima</a>
-      <a routerLink="/info" routerLinkActive="active">Info</a>
+      <a routerLink="/rutas" class="nav-link" routerLinkActive="active"
+        >Explorar</a
+      >
+      <a routerLink="/zonas" class="nav-link" routerLinkActive="active">Zonas</a>
+      <a routerLink="/info" class="nav-link" routerLinkActive="active"
+        >Consejos</a
+      >
     </nav>
 
-    <!-- LOGIN DERECHA -->
     <div class="nav-right">
-      <!-- NO LOGUEADO -->
       <ng-container *ngIf="!usuario">
         <a routerLink="/login" class="login">Iniciar sesión</a>
         <a routerLink="/register" class="register">Crear cuenta</a>
       </ng-container>
 
-      <!-- LOGUEADO -->
       <ng-container *ngIf="usuario">
-        <span class="user">👤 {{ usuario.nombre }}</span>
+        <span class="user">{{ usuario.nombre }}</span>
 
-        <!-- 👇 SOLO ADMIN -->
         <a *ngIf="usuario.role === 'admin'" routerLink="/admin" class="admin">
           Panel Admin
         </a>

@@ -1,0 +1,48 @@
+<section class="explorar">
+  <header class="explorar-hero">
+    <span class="badge">Guia de exploracion</span>
+    <h1>Encuentra tu proxima ruta en pocos pasos</h1>
+    <p>
+      Usa esta seccion para decidir rapido segun el tipo de plan que te apetece:
+      montana, agua, pueblos con encanto o escapadas en familia.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/zonas" class="btn btn-primary">Ver mapa de zonas</a>
+      <a routerLink="/info" class="btn btn-secondary">Leer consejos utiles</a>
+    </div>
+  </header>
+
+  <section class="carousel-block">
+    <div class="carousel-head">
+      <h2>Planes que van cambiando</h2>
+      <span>Actualizacion automatica cada 5 segundos</span>
+    </div>
+    <div class="quick-grid">
+      <article class="quick-card" *ngFor="let plan of visiblePlans">
+        <img [src]="plan.image" [alt]="plan.title" class="card-image" />
+        <div class="card-body">
+          <h3>{{ plan.title }}</h3>
+          <p>{{ plan.description }}</p>
+          <a [routerLink]="plan.route" class="cta-link">{{ plan.cta }}</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="carousel-block tips">
+    <div class="carousel-head">
+      <h2>Recomendaciones dinamicas</h2>
+      <span>Sugerencias variables para no repetir siempre lo mismo</span>
+    </div>
+    <div class="quick-grid">
+      <article class="quick-card" *ngFor="let tip of visibleRecommendations">
+        <img [src]="tip.image" [alt]="tip.title" class="card-image" />
+        <div class="card-body">
+          <h3>{{ tip.title }}</h3>
+          <p>{{ tip.description }}</p>
+          <a [routerLink]="tip.route" class="cta-link">{{ tip.cta }}</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</section>

@@ -27,6 +27,7 @@ import { TentudiaComponent } from './pages/zone/tentudia/tentudia.component';
 import { TierraDeBarrosComponent } from './pages/zone/tierra-de-barros/tierra-de-barros.component';
 import { ValenciaDeAlcantaraComponent } from './pages/zone/valencia-de-alcantara/valencia-de-alcantara.component';
 import { InfoComponent } from './pages/info/info.component';
+import { ExplorarComponent } from './pages/explorar/explorar.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { authGuard } from './core/guards/auth.guard';
@@ -42,6 +43,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   { path: '', component: HomeComponent },
+  { path: 'rutas', component: ExplorarComponent },
   { path: 'zonas', component: ZonasComponent },
   { path: 'info', component: InfoComponent },
   { path: 'login', component: LoginComponent },

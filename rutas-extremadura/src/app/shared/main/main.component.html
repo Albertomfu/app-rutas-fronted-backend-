@@ -5,23 +5,36 @@
     <ng-container [ngComponentOutlet]="zonaComponentMap[selectedZona]" />
   } @else {
     <div class="hero">
-      <!-- <div class="hero-title">
-        <h1>Explora Extremadura</h1>
-        <p>Descubre rutas naturales, montañas y paisajes únicos</p>
-      </div> -->
-
       <div class="placeholder">
         <div class="placeholder-card">
-          <div class="compass">🧭</div>
-
-          <h2>Selecciona una zona de Extremadura</h2>
-
-          <p>
-            Haz clic en el mapa para descubrir rutas, ríos y montañas
-            increíbles.
+          <span class="eyebrow">Rutas Extremadura</span>
+          <h1>Planifica tus rutas de forma profesional</h1>
+          <p class="lead">
+            Selecciona una zona en el mapa y accede a recorridos, puntos de
+            inter&eacute;s y trazados recomendados para disfrutar de la naturaleza
+            con mejor contexto.
           </p>
 
-          <span class="hint">Empieza tu aventura</span>
+          <div class="feature-grid">
+            <article class="feature-item">
+              <h2>Rutas destacadas</h2>
+              <p>Itinerarios preparados para senderismo y escapadas.</p>
+            </article>
+            <article class="feature-item">
+              <h2>Informaci&oacute;n clara</h2>
+              <p>Visualiza r&iacute;os, sierras y referencias de cada zona.</p>
+            </article>
+            <article class="feature-item">
+              <h2>Exploraci&oacute;n r&aacute;pida</h2>
+              <p>Navega por el mapa y encuentra opciones en segundos.</p>
+            </article>
+          </div>
+
+          <div class="hero-metrics">
+            <span>Interfaz intuitiva</span>
+            <span>Selecci&oacute;n por zonas</span>
+            <span>Experiencia inmersiva</span>
+          </div>
         </div>
       </div>
     </div>
