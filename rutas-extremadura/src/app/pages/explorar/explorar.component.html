@@ -1,46 +1,83 @@
 <section class="explorar">
   <header class="explorar-hero">
-    <span class="badge">Guia de exploracion</span>
-    <h1>Encuentra tu proxima ruta en pocos pasos</h1>
+    <span class="badge">Guía de exploración</span>
+    <h1>Encuentra tu próxima ruta en pocos pasos</h1>
     <p>
-      Usa esta seccion para decidir rapido segun el tipo de plan que te apetece:
-      montana, agua, pueblos con encanto o escapadas en familia.
+      Usa esta sección para decidir rápido según el tipo de plan que te apetece:
+      montaña, agua, pueblos con encanto o escapadas en familia.
     </p>
     <div class="hero-actions">
       <a routerLink="/zonas" class="btn btn-primary">Ver mapa de zonas</a>
-      <a routerLink="/info" class="btn btn-secondary">Leer consejos utiles</a>
+      <a routerLink="/info" class="btn btn-secondary">Leer consejos útiles</a>
     </div>
   </header>
-
+  <!-- SECCIÓN 1: PLANES (Carrusel dinámico continuo y suave) -->
   <section class="carousel-block">
     <div class="carousel-head">
-      <h2>Planes que van cambiando</h2>
-      <span>Actualizacion automatica cada 5 segundos</span>
+      <h2>Planes para explorar</h2>
+      <span>Elige tu ruta perfecta</span>
     </div>
-    <div class="quick-grid">
-      <article class="quick-card" *ngFor="let plan of visiblePlans">
-        <img [src]="plan.image" [alt]="plan.title" class="card-image" />
-        <div class="card-body">
-          <h3>{{ plan.title }}</h3>
-          <p>{{ plan.description }}</p>
-          <a [routerLink]="plan.route" class="cta-link">{{ plan.cta }}</a>
+    <div class="carousel-container">
+      <div class="carousel-track">
+        <!-- Bloque Original -->
+        <div class="quick-grid-carousel">
+          <article class="quick-card" *ngFor="let plan of planPool">
+            <img [src]="plan.image" [alt]="plan.title" class="card-image" />
+            <div class="card-body">
+              <h3>{{ plan.title }}</h3>
+              <p>{{ plan.description }}</p>
+              <a [routerLink]="plan.route" class="cta-link">{{ plan.cta }}</a>
+            </div>
+          </article>
         </div>
-      </article>
+        <!-- Bloque Duplicado (mantiene el efecto infinito sin saltos) -->
+        <div class="quick-grid-carousel" aria-hidden="true">
+          <article class="quick-card" *ngFor="let plan of planPool">
+            <img [src]="plan.image" [alt]="plan.title" class="card-image" />
+            <div class="card-body">
+              <h3>{{ plan.title }}</h3>
+              <p>{{ plan.description }}</p>
+              <a [routerLink]="plan.route" class="cta-link">{{ plan.cta }}</a>
+            </div>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
-
-  <section class="carousel-block tips">
+  <!-- SECCIÓN 2: RECOMENDACIONES (Aleatorias en cada carga) -->
+  <section class="tips-section">
     <div class="carousel-head">
-      <h2>Recomendaciones dinamicas</h2>
-      <span>Sugerencias variables para no repetir siempre lo mismo</span>
+      <h2>Recomendaciones para inspirarte</h2>
+      <span class="tips-badge">Sugerencias según tu viaje</span>
     </div>
-    <div class="quick-grid">
-      <article class="quick-card" *ngFor="let tip of visibleRecommendations">
-        <img [src]="tip.image" [alt]="tip.title" class="card-image" />
-        <div class="card-body">
+    <div class="tips-grid-large">
+      <!-- Iteramos sobre las 8 recomendaciones usando la nueva estructura horizontal -->
+      <article class="row-card" *ngFor="let tip of randomRecommendations">
+        <div class="row-image-container">
+          <img [src]="tip.image" [alt]="tip.title" class="row-image" />
+        </div>
+        <div class="row-body">
           <h3>{{ tip.title }}</h3>
           <p>{{ tip.description }}</p>
-          <a [routerLink]="tip.route" class="cta-link">{{ tip.cta }}</a>
+          <!-- <a [routerLink]="tip.route" class="cta-link">{{ tip.cta }}</a> -->
+          <div class="link-route">
+            <a
+              class="cta-link maps"
+              [attr.href]=""
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Google Maps
+            </a>
+            <a
+              class="cta-link wikiloc"
+              [attr.href]=""
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Wikiloc
+            </a>
+          </div>
         </div>
       </article>
     </div>

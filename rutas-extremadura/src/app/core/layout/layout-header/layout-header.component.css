@@ -41,16 +41,17 @@
   display: flex;
   flex-direction: column;
   line-height: 1.1;
+  margin-right: 20px;
 }
 
 .brand-copy strong {
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 800;
   letter-spacing: 0.03em;
 }
 
 .brand-copy span {
-  font-size: 0.72rem;
+  font-size: 1rem;
   color: rgba(232, 245, 233, 0.9);
 }
 

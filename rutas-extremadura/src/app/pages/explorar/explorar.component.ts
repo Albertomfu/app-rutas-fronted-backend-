@@ -1,5 +1,5 @@
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 type ExploreItem = {
@@ -16,19 +16,18 @@ type ExploreItem = {
   templateUrl: './explorar.component.html',
   styleUrl: './explorar.component.css',
 })
-export class ExplorarComponent implements OnInit, OnDestroy {
-  private rotationId?: ReturnType<typeof setInterval>;
-
-  private readonly planPool: ExploreItem[] = [
+export class ExplorarComponent implements OnInit {
+  readonly planPool: ExploreItem[] = [
     {
       title: 'Planes de agua y sombra',
-      description: 'Gargantas y zonas frescas para rutas comodas en dias calidos.',
+      description:
+        'Gargantas y zonas frescas para rutas cómodas en días cálidos.',
       route: '/laVera',
       image: 'images/vera/sendero-del-tietar.jpg',
       cta: 'Explorar La Vera',
     },
     {
-      title: 'Paisaje de montana',
+      title: 'Paisaje de montaña',
       description: 'Bosques, miradores y senderos para caminar con calma.',
       route: '/sierraDeGata',
       image: 'images/sierra-de-gata/jalama.jpg',
@@ -36,7 +35,8 @@ export class ExplorarComponent implements OnInit, OnDestroy {
     },
     {
       title: 'Ruta con patrimonio',
-      description: 'Combina historia, plazas y recorridos con mucho contexto local.',
+      description:
+        'Combina historia, plazas y recorridos con mucho contexto local.',
       route: '/trujillo',
       image: 'images/trujillo/casco-historico.jpg',
       cta: 'Descubrir Trujillo',
@@ -60,17 +60,18 @@ export class ExplorarComponent implements OnInit, OnDestroy {
       description: 'Un plan cultural con espacios abiertos y rutas urbanas.',
       route: '/merida',
       image: 'images/merida/monumentaldos.jpg',
-      cta: 'Descubrir Merida',
+      cta: 'Descubrir Mérida',
     },
   ];
 
-  private readonly recommendationPool: ExploreItem[] = [
+  // Ampliado a 10 opciones variadas para nutrir la cuadrícula de 8 tarjetas aleatorias
+  readonly recommendationPool: ExploreItem[] = [
     {
-      title: 'Si tienes medio dia',
+      title: 'Si tienes medio día',
       description: 'Elige una zona cercana para una ruta corta y sin prisas.',
       route: '/campoAranuelo',
       image: 'images/campo-aranuelo/via-verde-tajo.png',
-      cta: 'Ver Campo Aranuelo',
+      cta: 'Ver Campo Arañuelo',
     },
     {
       title: 'Si viajas en familia',
@@ -88,10 +89,11 @@ export class ExplorarComponent implements OnInit, OnDestroy {
     },
     {
       title: 'Si quieres historia y agua',
-      description: 'Una combinacion muy completa para una escapada de fin de semana.',
+      description:
+        'Una combinación muy completa para una escapada de fin de semana.',
       route: '/alcantara',
       image: 'images/alcantara/alcantara-puente.webp',
-      cta: 'Visitar Alcantara',
+      cta: 'Visitar Alcántara',
     },
     {
       title: 'Si te gusta la autenticidad',
@@ -101,34 +103,56 @@ export class ExplorarComponent implements OnInit, OnDestroy {
       cta: 'Conocer Las Hurdes',
     },
     {
-      title: 'Si buscas una primera toma de contacto',
-      description: 'Ruta accesible para empezar a descubrir Extremadura.',
+      title: 'Si buscas iniciación',
+      description: 'Ruta accesible para empezar a descubrir senderos.',
       route: '/olivenza',
       image: 'images/olivenza/corujas.jpg',
       cta: 'Ver Olivenza',
     },
+    {
+      title: 'Si buscas avistamiento de aves',
+      description:
+        'Acantilados, roquedos y la mayor colonia de buitres de la región.',
+      route: '/monfrague',
+      image: 'images/trujillo/rita-tamatuja.jpg',
+      cta: 'Ir a Monfragüe',
+    },
+    {
+      title: 'Si te apasiona el senderismo',
+      description: 'Cumbres suaves, castaños centenarios y mucha vegetación.',
+      route: '/sierraDeGata',
+      image: 'images/gata/trevejo.jpg',
+      cta: 'Explorar Gata',
+    },
+    {
+      title: 'Si buscas cerezos y cascadas',
+      description:
+        'Gargantas espectaculares talladas en la roca y saltos de agua.',
+      route: '/valleJerte',
+      image: 'images/jerte/infiernos.jpg',
+      cta: 'Ver el Valle del Jerte',
+    },
+    {
+      title: 'Si quieres dehesas infinitas',
+      description:
+        'Caminos entre encinas, lagunas y restos de antiguos castillos.',
+      route: '/olivenza',
+      image: 'images/olivenza/dehesas.jpg',
+      cta: 'Ver Alqueva',
+    },
   ];
 
-  visiblePlans: ExploreItem[] = [];
-  visibleRecommendations: ExploreItem[] = [];
+  randomRecommendations: ExploreItem[] = [];
 
   ngOnInit(): void {
-    this.rotateContent();
-    this.rotationId = setInterval(() => this.rotateContent(), 5000);
+    // Extraemos 8 elementos únicos al azar cada vez que carga
+    this.randomRecommendations = this.getShuffledItems(
+      this.recommendationPool,
+      8,
+    );
   }
 
-  ngOnDestroy(): void {
-    if (this.rotationId) {
-      clearInterval(this.rotationId);
-    }
-  }
-
-  private rotateContent(): void {
-    this.visiblePlans = this.pickRandomItems(this.planPool, 3);
-    this.visibleRecommendations = this.pickRandomItems(this.recommendationPool, 3);
-  }
-
-  private pickRandomItems(items: ExploreItem[], count: number): ExploreItem[] {
+  private getShuffledItems(items: ExploreItem[], count: number): ExploreItem[] {
     const shuffled = [...items];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
