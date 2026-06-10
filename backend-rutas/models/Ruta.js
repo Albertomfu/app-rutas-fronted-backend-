@@ -4,7 +4,6 @@ const RutaSchema = new mongoose.Schema({
   nombre: String,
   zona: String,
   descripcion: String,
-
   salida: String,
   llegada: String,
   km: Number,

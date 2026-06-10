@@ -48,30 +48,52 @@
   <section class="tips-section">
     <div class="carousel-head">
       <h2>Recomendaciones para inspirarte</h2>
-      <span class="tips-badge">Sugerencias según tu viaje</span>
+      <span class="tips-badge">Rutas sugeridas</span>
     </div>
+
     <div class="tips-grid-large">
-      <!-- Iteramos sobre las 8 recomendaciones usando la nueva estructura horizontal -->
-      <article class="row-card" *ngFor="let tip of randomRecommendations">
+      <article class="row-card" *ngFor="let ruta of randomRecommendations">
         <div class="row-image-container">
-          <img [src]="tip.image" [alt]="tip.title" class="row-image" />
+          <img
+            [src]="ruta.imagen || 'images/extremaduraMain.jpg'"
+            [alt]="ruta.nombre"
+            class="row-image"
+          />
         </div>
+
         <div class="row-body">
-          <h3>{{ tip.title }}</h3>
-          <p>{{ tip.description }}</p>
-          <!-- <a [routerLink]="tip.route" class="cta-link">{{ tip.cta }}</a> -->
+          <h3>{{ ruta.nombre }}</h3>
+          <h3>({{ formatearZona(ruta.zona) }})</h3>
+          <!-- <p>{{ ruta.descripcion }}</p> -->
+          <!-- <div class="row-body">
+          <h3>{{ ruta.nombre }}</h3>
+
+          <p class="ruta-zona-tag" *ngIf="ruta.zona">
+            <strong>({{ formatearZona(ruta.zona) }})</strong>
+          </p> -->
+
+          <div class="ruta-meta">
+            <span *ngIf="ruta.dificultad">{{ ruta.dificultad }}</span>
+            <span *ngIf="ruta.km">{{ ruta.km }} km</span>
+            <span *ngIf="ruta.duracion">{{ ruta.duracion }}</span>
+            <span *ngIf="ruta.tipo">{{ ruta.tipo }}</span>
+          </div>
+
           <div class="link-route">
             <a
+              *ngIf="ruta.maps"
               class="cta-link maps"
-              [attr.href]=""
+              [href]="ruta.maps"
               target="_blank"
               rel="noopener noreferrer"
             >
               Google Maps
             </a>
+
             <a
+              *ngIf="ruta.wikiloc"
               class="cta-link wikiloc"
-              [attr.href]=""
+              [href]="ruta.wikiloc"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RutasService } from '../../../services/rutas.service';
+import { RutasService } from '../../../shared/rutas.service';
+import { Ruta } from '../../../interface/ruta';
 
 @Component({
   selector: 'app-caceres',
@@ -8,145 +9,16 @@ import { RutasService } from '../../../services/rutas.service';
   styleUrl: './caceres.component.css',
 })
 export class CaceresComponent implements OnInit {
-  rutas: any[] = [];
-  rutasLocales = [
-    {
-      nombre: 'Ruta Monumental del Casco Histórico',
-      salida: 'Plaza Mayor de Cáceres',
-      llegada: 'Ciudad Monumental',
-      km: 3,
-      dificultad: 'Fácil',
-      duracion: '1,5 h',
-      tipo: 'Circular',
-      imagen: 'images/caceres/casco-caceres.avif',
-      maps: 'https://www.google.com/maps/search/Casco+Historico+de+Caceres',
-      wikiloc:
-        'https://www.wikiloc.com/trails/hiking/casco-historico-de-caceres',
-    },
-    {
-      nombre: 'Sendero del Paseo del Marco',
-      salida: 'Fuente del Marco',
-      llegada: 'Entorno natural del Marco',
-      km: 4,
-      dificultad: 'Fácil',
-      duracion: '1,5 h',
-      tipo: 'Circular',
-      imagen: 'images/caceres/Ribera-del-Marco.jpg',
-      maps: 'https://www.google.com/maps/search/Fuente+del+Marco+Caceres',
-      wikiloc: 'https://www.wikiloc.com/trails/hiking/paseo-del-marco-caceres',
-    },
-    {
-      nombre: 'Ruta del Santuario de la Montaña',
-      salida: 'Cáceres',
-      llegada: 'Santuario de la Virgen de la Montaña',
-      km: 6,
-      dificultad: 'Media',
-      duracion: '2,5 h',
-      tipo: 'Ida y vuelta',
-      imagen: 'images/caceres/Virgen de la Montaña.jpg',
-      maps: 'https://www.google.com/maps/search/Santuario+Virgen+de+la+Montana+Caceres',
-      wikiloc:
-        'https://www.wikiloc.com/trails/hiking/santuario-de-la-virgen-de-la-montana-caceres',
-    },
-    {
-      nombre: 'Sendero de los Barruecos',
-      salida: 'Malpartida de Cáceres',
-      llegada: 'Monumento Natural Los Barruecos',
-      km: 5,
-      dificultad: 'Fácil',
-      duracion: '2 h',
-      tipo: 'Circular',
-      imagen: 'images/caceres/los-barruecos.jpg',
-      maps: 'https://www.google.com/maps/search/Los+Barruecos+Malpartida',
-      wikiloc:
-        'https://www.wikiloc.com/trails/hiking/los-barruecos-malpartida-de-caceres',
-    },
-    {
-      nombre: 'Ruta del Calerizo',
-      salida: 'Cáceres',
-      llegada: 'Paisaje kárstico del Calerizo',
-      km: 8,
-      dificultad: 'Media',
-      duracion: '3 h',
-      tipo: 'Circular',
-      imagen: 'images/caceres/ruta-del-calerizo.avif',
-      maps: 'https://www.google.com/maps/search/Calerizo+de+Caceres',
-      wikiloc: 'https://www.wikiloc.com/trails/hiking/calerizo-de-caceres',
-    },
-    {
-      nombre: 'Sendero del Guadiloba',
-      salida: 'Embalse de Guadiloba',
-      llegada: 'Riberas del embalse',
-      km: 7,
-      dificultad: 'Fácil',
-      duracion: '2,5 h',
-      tipo: 'Circular',
-      imagen: 'images/caceres/sendero-del-guadiloba.jpg',
-      maps: 'https://www.google.com/maps/search/Embalse+de+Guadiloba',
-      wikiloc:
-        'https://www.wikiloc.com/trails/hiking/embalse-de-guadiloba-caceres',
-    },
-    {
-      nombre: 'Ruta de la Ribera del Marco',
-      salida: 'Cáceres',
-      llegada: 'Ribera del arroyo Marco',
-      km: 5,
-      dificultad: 'Fácil',
-      duracion: '2 h',
-      tipo: 'Lineal',
-      imagen: 'images/caceres/Ribera-del-Marco2.jpg',
-      maps: 'https://www.google.com/maps/search/Ribera+del+Marco+Caceres',
-      wikiloc: 'https://www.wikiloc.com/trails/hiking/ribera-del-marco-caceres',
-    },
-    {
-      nombre: 'Sendero de Sierra de la Mosca',
-      salida: 'Cáceres',
-      llegada: 'Miradores de Sierra de la Mosca',
-      km: 9,
-      dificultad: 'Media',
-      duracion: '3,5 h',
-      tipo: 'Circular',
-      imagen: 'images/caceres/sierra-mosca.jpg',
-      maps: 'https://www.google.com/maps/search/Sierra+de+la+Mosca+Caceres',
-      wikiloc:
-        'https://www.wikiloc.com/trails/hiking/sierra-de-la-mosca-caceres',
-    },
-    {
-      nombre: 'Ruta de las Canteras Romanas',
-      salida: 'Cáceres',
-      llegada: 'Antiguas canteras',
-      km: 6,
-      dificultad: 'Fácil',
-      duracion: '2 h',
-      tipo: 'Circular',
-      imagen: 'images/caceres/canteras-romanas.jpg',
-      maps: 'https://www.google.com/maps/search/Canteras+Romanas+Caceres',
-      wikiloc:
-        'https://www.wikiloc.com/trails/hiking/canteras-romanas-de-caceres',
-    },
-    {
-      nombre: 'Ruta Nocturna por la Ciudad Monumental',
-      salida: 'Plaza Mayor',
-      llegada: 'Murallas iluminadas',
-      km: 3,
-      dificultad: 'Fácil',
-      duracion: '1 h',
-      tipo: 'Circular',
-      imagen: 'images/caceres/caceres-nocturno.webp',
-      maps: 'https://www.google.com/maps/search/Ciudad+Monumental+Caceres+noche',
-      wikiloc: 'https://www.wikiloc.com/trails/hiking/caceres-nocturno',
-    },
-  ];
+  rutas: Ruta[] = [];
+
   constructor(private rutasService: RutasService) {}
 
   ngOnInit() {
-    this.rutasService.getRutas().subscribe((res: any) => {
-      const rutasBackend = res.filter(
-        (ruta: any) => ruta.zona === 'caceres', // 👈 CLAVE
+    // Le indicamos explícitamente a Angular que 'todasLasRutas' es un array de tipo Ruta[]
+    this.rutasService.getRutas().subscribe((todasLasRutas: Ruta[]) => {
+      this.rutas = todasLasRutas.filter(
+        (ruta: Ruta) => ruta.zona === 'caceres',
       );
-
-      // 🔥 UNIMOS TODO
-      this.rutas = [...this.rutasLocales, ...rutasBackend];
     });
   }
 }

@@ -97,9 +97,9 @@
       #dificultad="ngModel"
     >
       <option value="">Selecciona dificultad</option>
-      <option value="facil">Fácil</option>
-      <option value="media">Media</option>
-      <option value="dificil">Difícil</option>
+      <option value="Fácil">Fácil</option>
+      <option value="Media">Media</option>
+      <option value="Difícil">Difícil</option>
     </select>
     <small *ngIf="form.submitted && dificultad.invalid">
       Selecciona dificultad
@@ -108,9 +108,9 @@
     <!-- TIPO -->
     <select [(ngModel)]="nuevaRuta.tipo" name="tipo" required #tipo="ngModel">
       <option value="">Selecciona tipo</option>
-      <option value="solo_ida">Solo Ida</option>
-      <option value="ida_vuelta">Ida y Vuelta</option>
-      <option value="circular">Circular</option>
+      <option value="Solo Ida">Solo Ida</option>
+      <option value="Ida y Vuelta">Ida y Vuelta</option>
+      <option value="Circular">Circular</option>
     </select>
     <small *ngIf="form.submitted && tipo.invalid"> Selecciona tipo </small>
 
@@ -184,7 +184,7 @@
         <h3>{{ ruta.nombre }}</h3>
 
         <ul>
-          <li><strong>Zona:</strong> {{ ruta.zona }}</li>
+          <li><strong>Zona:</strong> {{ formatearZona(ruta.zona) }}</li>
           <li><strong>Salida:</strong> {{ ruta.salida }}</li>
           <li><strong>Llegada:</strong> {{ ruta.llegada }}</li>
           <li><strong>Distancia:</strong> {{ ruta.km }} km</li>
@@ -194,6 +194,8 @@
             {{ formatearDificultad(ruta.dificultad) }}
           </li>
           <li><strong>Tipo:</strong> {{ formatearTipo(ruta.tipo) }}</li>
+          <li><strong>Dificultad:</strong> {{ ruta.dificultad }}</li>
+          <li><strong>Tipo:</strong> {{ ruta.tipo }}</li>
         </ul>
 
         <div class="ruta-links">

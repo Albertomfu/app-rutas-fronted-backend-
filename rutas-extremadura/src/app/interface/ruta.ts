@@ -3,13 +3,14 @@ export interface Ruta {
   _id?: string;
   nombre: string;
   zona: string;
-  salida: string;
-  llegada: string;
-  km: string;
-  duracion: string;
+  // descripcion: string;
+  salida?: string;
+  llegada?: string;
+  km: number; // Cambiado de 'distancia' a 'km' tal como en tu BD
+  duracion: string; // Cambiado de 'tiempo' a 'duracion' tal como en tu BD
   dificultad: string;
-  tipo: string;
+  tipo?: string;
   imagen: string;
-  maps: string;
+  maps: string; // Cambiado de 'googleMaps' a 'maps' tal como en tu BD
   wikiloc: string;
 }

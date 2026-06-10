@@ -20,8 +20,9 @@ exports.crearRuta = async (req, res) => {
 };
 
 exports.editarRuta = async (req, res) => {
+  // Cambiamos { new: true } por { returnDocument: 'after' }
   const ruta = await Ruta.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
+    returnDocument: "after",
   });
 
   res.json(ruta);

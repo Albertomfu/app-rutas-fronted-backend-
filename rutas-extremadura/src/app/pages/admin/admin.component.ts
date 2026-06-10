@@ -93,27 +93,99 @@ export class AdminComponent implements OnInit {
     this.rutaEditandoId = '';
   }
   formatearTipo(tipo: string): string {
-    switch (tipo) {
+    if (!tipo) return '';
+    switch (
+      tipo.toLowerCase().replace(' ', '_') // Convierte "Solo Ida" a "solo_ida" internamente para el switch
+    ) {
       case 'solo_ida':
+      case 'solo ida':
         return 'Solo Ida';
       case 'ida_vuelta':
+      case 'ida y vuelta':
         return 'Ida y Vuelta';
       case 'circular':
         return 'Circular';
+      case 'alcantara':
+        return 'Alcantara';
       default:
         return tipo;
     }
   }
+
   formatearDificultad(dif: string): string {
-    switch (dif) {
+    if (!dif) return '';
+    switch (dif.toLowerCase()) {
       case 'facil':
+      case 'fácil':
         return 'Fácil';
       case 'media':
         return 'Media';
       case 'dificil':
+      case 'difícil':
         return 'Difícil';
       default:
         return dif;
+    }
+  }
+  formatearZona(zona: string): string {
+    if (!zona) return '';
+
+    switch (zona) {
+      // CÁCERES
+      case 'alagon':
+        return 'Valle del Alagón';
+      case 'losIbores':
+        return 'Los Ibores';
+      case 'sierraDeGata':
+        return 'Sierra de Gata';
+      case 'lasHurdes':
+        return 'Las Hurdes';
+      case 'ambroz':
+        return 'Valle del Ambroz';
+      case 'elJerte':
+        return 'Valle del Jerte';
+      case 'laVera':
+        return 'La Vera';
+      case 'campoAranuelo':
+        return 'Campo Arañuelo';
+      case 'lasVilluercas':
+        return 'Las Villuercas';
+      case 'trujillo':
+        return 'Trujillo';
+      case 'caceres':
+        return 'Cáceres';
+      case 'alcantara':
+        return 'Alcántara'; // 👈 Tu traducción aquí
+      case 'valenciaDeAlcantara':
+        return 'Valencia de Alcántara';
+
+      // BADAJOZ
+      case 'laSiberia':
+        return 'La Siberia';
+      case 'laSerena':
+        return 'La Serena';
+      case 'donBenito':
+        return 'Don Benito';
+      case 'merida':
+        return 'Mérida';
+      case 'tierraDeBarros':
+        return 'Tierra de Barros';
+      case 'campinaSur':
+        return 'Campiña Sur';
+      case 'jerezDeLosCaballeros':
+        return 'Jerez de los Caballeros';
+      case 'olivenza':
+        return 'Olivenza';
+      case 'tentudia':
+        return 'Tentudía';
+      case 'badajoz':
+        return 'Badajoz';
+      case 'alburquerque':
+        return 'Alburquerque';
+
+      default:
+        // Si por algún motivo guardas el nombre bonito directamente, lo devuelve tal cual
+        return zona;
     }
   }
   selectedFile: File | null = null;
